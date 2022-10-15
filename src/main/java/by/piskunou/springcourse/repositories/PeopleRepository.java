@@ -10,4 +10,5 @@ import by.piskunou.springcourse.models.Person;
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
 	Optional<Person> findByUsername(String username);
+	Optional<Person> findDistinctByIdNotAndUsername(int id, String username);
 }

@@ -6,3 +6,5 @@ CREATE TABLE IF NOT EXISTS Person (
 	year_of_birth int NOT NULL, 
 	password varchar NOT NULL
 );
+
+ALTER TABLE Person ADD COLUMN role varchar(100) NOT NULL;

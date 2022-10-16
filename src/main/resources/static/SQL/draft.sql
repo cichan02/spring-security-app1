@@ -1,1 +1,3 @@
 SELECT * FROM Person;
+
+UPDATE Person SET role='ROLE_ADMIN' WHERE id=6;

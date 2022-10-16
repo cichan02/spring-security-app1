@@ -2,6 +2,8 @@ package by.piskunou.springcourse.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +36,10 @@ public class Person {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "role")
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public Person(String username, int yearOfBirth) {
 		this.username = username;

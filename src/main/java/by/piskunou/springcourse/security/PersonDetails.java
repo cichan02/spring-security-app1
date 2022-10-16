@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import by.piskunou.springcourse.models.Person;
@@ -21,9 +22,9 @@ public class PersonDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.emptyList();
+		return Collections.singletonList(new SimpleGrantedAuthority(person.getRole().toString()));
 	}
-
+	
 	@Override
 	public String getPassword() {	
 		return person.getPassword();

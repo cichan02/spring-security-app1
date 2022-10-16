@@ -11,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import by.piskunou.springcourse.services.PersonDetailsService;
 
+import static by.piskunou.springcourse.models.Role.ROLE_ADMIN;
+import static by.piskunou.springcourse.models.Role.ROLE_USER;
+
 @SuppressWarnings("deprecation")
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -25,8 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(AUTH_LOGIN, "/auth/registration", "/error").permitAll()
-								.anyRequest().authenticated()
+		http.authorizeRequests().antMatchers("/admin").hasAuthority(ROLE_ADMIN.toString())
+								.antMatchers(AUTH_LOGIN, "/auth/registration", "/error").permitAll()
+								.anyRequest().hasAnyAuthority(ROLE_ADMIN.toString(), ROLE_USER.toString())
 			.and()
 			.formLogin().loginPage(AUTH_LOGIN)
 						.loginProcessingUrl("/process_login")

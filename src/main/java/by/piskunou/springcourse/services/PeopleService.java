@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.piskunou.springcourse.models.Person;
+import by.piskunou.springcourse.models.Role;
 import by.piskunou.springcourse.repositories.PeopleRepository;
 
 @Service
@@ -29,6 +30,7 @@ public class PeopleService {
 	@Transactional
 	public void register(Person person) {
 		person.setPassword(passwordEncoder.encode(person.getPassword()));
+		person.setRole(Role.ROLE_USER);
 		
 		peopleRepo.save(person);
 	}

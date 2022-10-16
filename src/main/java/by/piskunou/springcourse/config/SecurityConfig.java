@@ -3,6 +3,7 @@ package by.piskunou.springcourse.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,6 +17,7 @@ import static by.piskunou.springcourse.models.Role.ROLE_USER;
 
 @SuppressWarnings("deprecation")
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String AUTH_LOGIN = "/auth/login";
 	
@@ -28,8 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/admin").hasAuthority(ROLE_ADMIN.toString())
-								.antMatchers(AUTH_LOGIN, "/auth/registration", "/error").permitAll()
+		http.authorizeRequests().antMatchers(AUTH_LOGIN, "/auth/registration", "/error").permitAll()
 								.anyRequest().hasAnyAuthority(ROLE_ADMIN.toString(), ROLE_USER.toString())
 			.and()
 			.formLogin().loginPage(AUTH_LOGIN)

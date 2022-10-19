@@ -1,1 +1,1 @@
-# First Spring Boot application
+# First Spring Security application

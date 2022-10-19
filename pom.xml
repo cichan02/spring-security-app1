@@ -10,7 +10,7 @@
 	</parent>
 	
 	<groupId>by.piskunou.springcourse</groupId>
-	<artifactId>spring-boot-app1</artifactId>
+	<artifactId>spring-security-app1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-app1</name>
 	<description>Demo project with Spring Boot</description>

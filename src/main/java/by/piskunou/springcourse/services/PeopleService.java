@@ -27,6 +27,10 @@ public class PeopleService {
 		return peopleRepo.findDistinctByIdNotAndUsername(id, username);
 	}
 	
+	public Optional<Person> findByUsername(String username) {
+		return peopleRepo.findByUsername(username);
+	}
+	
 	@Transactional
 	public void register(Person person) {
 		person.setPassword(passwordEncoder.encode(person.getPassword()));
